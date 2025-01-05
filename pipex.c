@@ -25,7 +25,7 @@ void	ft_child_process(char **argv, char **envp, int *fd)
 	execve(argv[2], envp);
 }
 
-void	ft_father_process(char **argv, char **envp, int *fd)
+void	ft_parent_process(char **argv, char **envp, int *fd)
 {
 	int	fileout;
 
@@ -54,7 +54,7 @@ int	main(char *argc, char **argv, char **envp)
 		if (pid1 == 0)
 			ft_child_process(argv, envp, fd);
 		waitpid(pid1, NULL, 0);
-		ft_parent_process(argv,, envp, fd);
+		ft_parent_process(argv, envp, fd);
 	}
 	return (0);
 }
