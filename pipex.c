@@ -38,7 +38,7 @@ void	ft_parent_process(char **argv, char **envp, int *fd)
 	execve(argv[3], envp);
 }
 
-int	main(char *argc, char **argv, char **envp)
+int	main(int argc, char **argv, char **envp)
 {
 	int	fd[2];
 	pid_t	pid1;
