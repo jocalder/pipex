@@ -6,7 +6,7 @@
 /*   By: jocalder <jocalder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 19:09:57 by jocalder          #+#    #+#             */
-/*   Updated: 2025/01/13 20:01:20 by jocalder         ###   ########.fr       */
+/*   Updated: 2025/01/14 18:28:30 by jocalder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,14 @@ void	ft_execute_command(char *argv, char **envp)
 		ft_error();
 	}
 	if (execve(command_path, cmd, envp) == -1)
+	{
+		i = -1;
+		while (cmd[++i])
+			free(cmd[i]);
+		free(cmd);
+		free(command_path);
 		ft_error();
+	}
 }
 
 ssize_t	get_next_line(char **line)
@@ -93,6 +100,7 @@ ssize_t	get_next_line(char **line)
 		if (c != '\n' && c != '\0')
 			buffer[i] = c;
 		i++;
+		bytes = read(0, &c, 1);
 	}
 	buffer[i] = '\n';
 	buffer[++i] = '\0';

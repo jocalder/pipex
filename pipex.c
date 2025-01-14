@@ -6,7 +6,7 @@
 /*   By: jocalder <jocalder@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/26 19:10:14 by jocalder          #+#    #+#             */
-/*   Updated: 2025/01/13 19:42:08 by jocalder         ###   ########.fr       */
+/*   Updated: 2025/01/14 17:28:44 by jocalder         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,7 @@ int	main(int argc, char **argv, char **envp)
 		waitpid(pid1, NULL, 0);
 		ft_parent_process(argv, envp, fd);
 	}
+	else
+		ft_error();
 	return (0);
 }
