@@ -19,9 +19,15 @@ void	ft_child_process(char **argv, char **envp, int *fd)
 
 	filein = open(argv[1], O_RDONLY, 0777);
 	if (filein == -1)
+	{
+		perror("Error al abrir el archivo de entrada");
 		ft_error();
+	}
 	if (dup2(fd[1], STDOUT_FILENO) == -1 || dup2(filein, STDIN_FILENO) == -1)
+	{
+		perror("Error al redirigir los flujo en el proceso hijo");
 		ft_error();
+	}
 	close(fd[0]);
 	close(filein);
 	close(fd[1]);
@@ -34,9 +40,15 @@ void	ft_parent_process(char **argv, char **envp, int *fd)
 
 	fileout = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
 	if (fileout == -1)
+	{
+		perror("Error al abrir archivo de salida");
 		ft_error();
+	}
 	if (dup2(fd[0], STDIN_FILENO) == -1 || dup2(fileout, STDOUT_FILENO) == -1)
+	{
+		perror("Error al redirigir los flujos en el proceso padre");
 		ft_error();
+	}
 	close(fd[1]);
 	close(fileout);
 	close(fd[0]);
